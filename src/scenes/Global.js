@@ -27,7 +27,7 @@ const Global = () => {
     if (loading) {
         return (
             <div className='d-flex justify-content-center w-100'>
-                <ReactLoading color='#000000' height={'10%'} width={'10%'} />
+                <ReactLoading type='spinningBubbles' color='#347B98' height={'10%'} width={'10%'} />
             </div>
         )
     }
