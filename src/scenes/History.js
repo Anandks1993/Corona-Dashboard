@@ -2,26 +2,43 @@ import React, { useState, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
-const History = () => {
+const History = ({ selectedCountry }) => {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://covid-193.p.rapidapi.com/history?country=All', {
-            'method': 'GET',
-            'headers': {
-                'x-rapidapi-host': 'covid-193.p.rapidapi.com',
-                'x-rapidapi-key': 'c3d6f57617mshf51e3d34956c4bdp15121ajsna81b7d225018'
-            }
-        }).then(async data => {
-            const stats = await data.json();
-            setHistory(stats.response);
-            setLoading(false);
-        }).catch(err => {
-            setLoading(false);
-            console.log(err);
-        });
-    }, []);
+        if (selectedCountry) {
+            fetch(`https://covid-193.p.rapidapi.com/history?country=${selectedCountry}`, {
+                'method': 'GET',
+                'headers': {
+                    'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+                    'x-rapidapi-key': 'c3d6f57617mshf51e3d34956c4bdp15121ajsna81b7d225018'
+                }
+            }).then(async data => {
+                const stats = await data.json();
+                setHistory(stats.response);
+                setLoading(false);
+            }).catch(err => {
+                setLoading(false);
+                console.log(err);
+            });
+        } else {
+            fetch('https://covid-193.p.rapidapi.com/history?country=All', {
+                'method': 'GET',
+                'headers': {
+                    'x-rapidapi-host': 'covid-193.p.rapidapi.com',
+                    'x-rapidapi-key': 'c3d6f57617mshf51e3d34956c4bdp15121ajsna81b7d225018'
+                }
+            }).then(async data => {
+                const stats = await data.json();
+                setHistory(stats.response);
+                setLoading(false);
+            }).catch(err => {
+                setLoading(false);
+                console.log(err);
+            });
+        }
+    }, [selectedCountry]);
 
     if (loading) {
         return (
@@ -32,7 +49,15 @@ const History = () => {
     }
 
     return (
-        <div className='d-flex justify-content-center'>
+        <div className={`d-flex justify-content-center ${selectedCountry ? 'flex-column' : ''}`}>
+            {
+                selectedCountry ?
+                    <div className='d-flex justify-content-center'>
+                        <h3>History ({selectedCountry})</h3>
+                    </div>
+                    :
+                    null
+            }
             <div style={{ width: '100%', maxWidth: '600px', height: '300px' }}>
                 <ResponsiveContainer>
                     <LineChart

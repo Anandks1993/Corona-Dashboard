@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 import LoadingOverlay from 'react-loading-overlay';
 
+import History from './History';
+
 const Country = () => {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -60,9 +62,16 @@ const Country = () => {
         if (countries.length !== 0) {
             
             return (
-                <select className='country-select' value={country} onChange={handleCountryChange}>
-                    {countries.map(country => <option key={country} value={country}>{country}</option>)}
-                </select>
+                <form className='w-100'>
+                    <div className='form-group row justify-content-center d-flex'>
+                        <label for='country' className='d-flex justify-content-center col-lg-6 col-sm-4 col-form-label col-md-6'><strong>Choose a Country</strong></label>
+                        <div className='d-flex justify-content-center col-sm-8 col-lg-6 col-md-6'>
+                            <select id='country' className='country-select' value={country} onChange={handleCountryChange}>
+                                {countries.map(country => <option key={country} value={country}>{country}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                </form>
             )
         }
 
@@ -89,37 +98,46 @@ const Country = () => {
                         {renderSelectBox()}
                     </div>
                 </div>
-                <div className="col col-12 col-sm-3 mb-3 mb-sm-0">
-                    <div className="card h-100 bg-tiber">
-                        <div className="card-body text-center">
-                            <h5 className="card-title">Total Cases</h5>
-                            <p className='stat-number'>{stats[0].cases.total}</p>
+                <div className='col-12 col-lg-6 col-sm-12'>
+                    <div className='row'>
+                        <div className="col-12 col-sm-6 mb-3">
+                            <div className="card h-100 bg-tiber">
+                                <div className="card-body text-center">
+                                    <h5 className="card-title">Total Cases</h5>
+                                    <p className='stat-number'>{stats[0].cases.total}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-sm-6 mb-3">
+                            <div className="card h-100 bg-green">
+                                <div className="card-body text-center">
+                                    <h5 className="card-title">Active Cases</h5>
+                                    <p className='stat-number'>{stats[0].cases.active}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className="col-12 col-sm-6 mb-3">
+                            <div className="card h-100 bg-astral">
+                                <div className="card-body text-center">
+                                    <h5 className="card-title">Recovered Cases</h5>
+                                    <p className='stat-number'>{stats[0].cases.recovered}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-sm-6 mb-3">
+                            <div className="card h-100 bg-red">
+                                <div className="card-body text-center">
+                                    <h5 className="card-title">Total Deaths</h5>
+                                    <p className='stat-number'>{stats[0].deaths.total}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="col col-12 col-sm-3 mb-3 mb-sm-0">
-                    <div className="card h-100 bg-green">
-                        <div className="card-body text-center">
-                            <h5 className="card-title">Active Cases</h5>
-                            <p className='stat-number'>{stats[0].cases.active}</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col col-12 col-sm-3 mb-3 mb-sm-0">
-                    <div className="card h-100 bg-astral">
-                        <div className="card-body text-center">
-                            <h5 className="card-title">Recovered Cases</h5>
-                            <p className='stat-number'>{stats[0].cases.recovered}</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col col-12 col-sm-3">
-                    <div className="card h-100 bg-red">
-                        <div className="card-body text-center">
-                            <h5 className="card-title">Total Deaths</h5>
-                            <p className='stat-number'>{stats[0].deaths.total}</p>
-                        </div>
-                    </div>
+                <div className='col-12 col-lg-6 col-sm-12'>
+                    <History selectedCountry={country} />
                 </div>
             </div>
         </LoadingOverlay>
