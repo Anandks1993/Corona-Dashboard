@@ -77,6 +77,9 @@ const History = ({ selectedCountry }) => {
                             labelFormatter={value => {
                                 return new Date(value).toLocaleString();
                             }}
+                            labelStyle={{
+                                color: '#000000'
+                            }}
                         />
                         <Legend />
                         <Line type="monotone" dot={false} name='Total Cases' dataKey="cases.total" stroke="#052D3D" activeDot={{ r: 8 }} />

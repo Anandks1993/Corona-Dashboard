@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -91,4 +95,8 @@
 .stat-number {
   font-size: 20px;
   font-weight: 900;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

@@ -6,10 +6,10 @@ import History from './History';
 
 const Dashboard = () => {
     return (
-        <div className='container my-2'>
+        <div className='container mt-2'>
             <div className='row mb-3 mt-3'>
                 <div className='col-12'>
-                    <h4 className='text-left'>History (Global)</h4>
+                    <h5 className='text-left'>History (Global)</h5>
                     <hr />
                 </div>
                 <div className='col-12'>
@@ -18,16 +18,16 @@ const Dashboard = () => {
             </div>
             <div className='row mb-3'>
                 <div className='col-12 mb-2'>
-                    <h4 className='text-left'>Global Stats</h4>
+                    <h5 className='text-left'>Global Stats</h5>
                     <hr />
                 </div>
                 <div className='col-12'>
                     <Global />
                 </div>
             </div>
-            <div className='row mb-3'>
+            <div className='row'>
                 <div className='col-12 mb-2'>
-                    <h4 className='text-left'>Country Wise Stats</h4>
+                    <h5 className='text-left'>Country Wise Stats</h5>
                     <hr />
                 </div>
                 <div className='col-12'>

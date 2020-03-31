@@ -1,12 +1,12 @@
 import React from "react";
 
-function Icon() {
+function Icon({ color }) {
   return (
     <svg 
         height='30px' 
         width='30px' 
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-        style={{ fill: 'white' }}
+        style={{ fill: color }}
     >
       <path
         style={{
