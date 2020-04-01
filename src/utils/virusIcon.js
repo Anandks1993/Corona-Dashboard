@@ -6,7 +6,7 @@ function Icon({ color }) {
         height='30px' 
         width='30px' 
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
-        style={{ fill: color }}
+        style={{ fill: color, transition: '0.5s' }}
     >
       <path
         style={{
